@@ -87,19 +87,6 @@
   }
   @media (min-width:901px){ nav.links{display:flex;} }
 
-  /* Social rail */
-  .social-rail{
-    display:none; position:fixed; left:32px; bottom:0; z-index:40;
-    flex-direction:column; align-items:center; gap:18px;
-  }
-  .social-rail a{
-    color:var(--muted); display:flex; width:38px; height:38px; align-items:center; justify-content:center;
-    border-radius:10px; transition:color .2s ease, background .2s ease, transform .2s ease;
-  }
-  .social-rail a:hover, .social-rail a:focus-visible{color:var(--violet); background:var(--violet-soft); transform:translateY(-2px);}
-  .social-rail .stem{width:1px; height:80px; background:linear-gradient(var(--muted), transparent); opacity:.4;}
-  @media (min-width:901px){ .social-rail{display:flex;} }
-
   section{position:relative; z-index:1;}
   .eyebrow{
     font-family:var(--mono); font-size:12.5px; letter-spacing:.15em; text-transform:uppercase;
@@ -146,7 +133,6 @@
   .btn-primary:hover, .btn-primary:focus-visible{transform:translateY(-2px);}
   .btn-ghost{border:1px solid rgba(255,255,255,0.18); color:var(--text); background:rgba(255,255,255,0.02);}
   .btn-ghost:hover, .btn-ghost:focus-visible{border-color:var(--cyan); color:var(--cyan);}
-  .btn svg{width:15px; height:15px;}
   .hero-socials{display:flex; gap:16px;}
   .hero-socials a{
     width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center;
@@ -167,12 +153,7 @@
     position:absolute; inset:0; border-radius:20px; backface-visibility:hidden; overflow:hidden;
     border:1px solid var(--card-border); box-shadow:0 0 50px -6px rgba(62,211,232,0.35), 0 0 90px -20px rgba(145,94,255,0.4);
   }
-  .flip-front img{
-    width:100%; 
-    height:100%; 
-    object-fit:cover; 
-    display:block;
-  }
+  .flip-front img{width:100%; height:100%; object-fit:cover; display:block;}
   .flip-hint{
     position:absolute; bottom:12px; right:14px; z-index:2;
     font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase;
@@ -195,14 +176,11 @@
   }
   .badge-status .dot{width:6px; height:6px; border-radius:50%; background:var(--green); box-shadow:0 0 8px var(--green);}
 
-  /* Reveal */
   .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
   .reveal.in{opacity:1; transform:none;}
-  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} html{scroll-behavior:auto;} }
 
   .sec{padding:90px 0;}
 
-  /* About / Skills */
   .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:26px;}
   @media (max-width:760px){ .about-grid{grid-template-columns:1fr;} }
 
@@ -235,35 +213,34 @@
     border:1px solid rgba(255,255,255,0.14); color:var(--muted); padding:5px 11px; border-radius:20px;
   }
 
-  /* Project */
+  /* Projects grid */
+  .projects-grid{display:grid; grid-template-columns:1fr; gap:24px;}
   .proj-card{
     background:var(--card); border:1px solid var(--card-border); border-radius:18px; overflow:hidden;
   }
-  .proj-top{padding:26px 28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-bottom:1px solid rgba(255,255,255,0.08);}
-  .proj-title{font-family:var(--disp); font-size:20px; font-weight:600;}
-  .pass-badge{
-    font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
-    color:var(--green); border:1px solid rgba(87,214,154,0.4); background:rgba(87,214,154,0.1);
-    padding:5px 12px; border-radius:20px; display:flex; align-items:center; gap:7px;
+  .proj-top{padding:22px 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-bottom:1px solid rgba(255,255,255,0.08);}
+  .proj-title{font-family:var(--disp); font-size:18px; font-weight:600;}
+  .tech-badge{
+    font-family:var(--mono); font-size:11px; color:var(--cyan); border:1px solid rgba(62,211,232,0.4); background:rgba(62,211,232,0.08);
+    padding:4px 10px; border-radius:20px;
   }
-  .pass-badge .dot{width:6px; height:6px; border-radius:50%; background:var(--green);}
-  .proj-fields{display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid rgba(255,255,255,0.08);}
-  .pfield{padding:16px 28px; border-right:1px solid rgba(255,255,255,0.08);}
-  .pfield:last-child{border-right:none;}
-  .pfield-label{font-family:var(--mono); font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:5px;}
-  .pfield-value{font-family:var(--mono); font-size:12.5px; color:var(--cyan);}
-  .proj-body{padding:24px 28px; color:var(--muted); font-size:14.8px;}
-  @media (max-width:700px){ .proj-fields{grid-template-columns:1fr;} .pfield{border-right:none; border-bottom:1px solid rgba(255,255,255,0.08);} }
+  .proj-body{padding:20px 24px; color:var(--muted); font-size:14.2px;}
 
   /* Credentials */
   .cred-card{background:var(--card); border:1px solid var(--card-border); border-radius:16px; padding:28px 30px;}
   .cred-card + .cred-card{margin-top:20px;}
   .cred-label{font-family:var(--mono); font-size:11px; color:var(--violet); text-transform:uppercase; letter-spacing:.08em; margin-bottom:16px;}
-  .cred-row{display:flex; justify-content:space-between; gap:16px; padding:12px 0; border-top:1px solid rgba(255,255,255,0.07);}
+  .cred-row{display:flex; justify-content:space-between; align-items:center; gap:16px; padding:12px 0; border-top:1px solid rgba(255,255,255,0.07);}
   .cred-row:first-of-type{border-top:none;}
   .cred-what strong{display:block; font-size:15px; font-weight:600; margin-bottom:3px;}
   .cred-what span{color:var(--muted); font-size:13px;}
   .cred-date{font-family:var(--mono); font-size:11.5px; color:var(--muted); white-space:nowrap; padding-top:2px;}
+  .pdf-link{
+    font-family:var(--mono); font-size:12px; color:var(--cyan); text-decoration:none;
+    border:1px solid rgba(62,211,232,0.3); background:rgba(62,211,232,0.08); padding:5px 12px; border-radius:8px;
+    transition:background .2s; white-space:nowrap;
+  }
+  .pdf-link:hover{background:rgba(62,211,232,0.2);}
 
   /* Activity */
   .activity-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
@@ -287,7 +264,7 @@
     width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center;
     border:1px solid rgba(255,255,255,0.12); color:var(--muted); transition:color .2s ease, border-color .2s ease;
   }
-  .foot-social a:hover, .foot-social a:focus-visible{color:var(--violet); border-color:var(--violet);}
+  .foot-social a:hover{color:var(--violet); border-color:var(--violet);}
   .foot-note{font-family:var(--mono); font-size:11.5px; color:var(--muted); opacity:.7;}
 </style>
 </head>
@@ -305,7 +282,7 @@
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
-      <a href="#credentials">Education</a>
+      <a href="#credentials">Education & Certs</a>
       <a href="#contact">Contact</a>
     </nav>
     <a class="nav-cv" href="#contact">Let's Talk</a>
@@ -323,13 +300,12 @@
         <div class="role-typed"><span id="typed"></span><span class="cursor">&nbsp;</span></div>
         <p class="summary">
           <strong>Motivated and detail-oriented</strong> ICT undergraduate at the University of Colombo, Faculty of
-          Technology, with a solid grip on <strong>software testing, bug tracking, and quality control</strong>,
-          alongside hands-on skill in <strong>network configuration, troubleshooting, and system administration</strong>.
-          Driven by problem-solving and a close eye for detail.
+          Technology, specializing in <strong>Software Quality Assurance (QA) and Network Systems</strong>.
+          Passionate about building reliable automated tests, managing bug cycles, and designing clean digital solutions.
         </p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="#projects">Explore My Work</a>
-          <a class="btn btn-ghost" download="Heshani_CV.pdf" href="cv.pdf">Download CV</a>
+          <a class="btn btn-primary" href="#projects">Explore My Projects</a>
+          <a class="btn btn-ghost" download="cv.pdf" href="cv.pdf">Download CV</a>
           <a class="btn btn-ghost" href="#contact">Contact Me</a>
         </div>
         <div class="hero-socials">
@@ -356,7 +332,7 @@
           <div class="flip-face flip-back">
             <div class="fb-dot">HN</div>
             <h4>QA & Network Focus</h4>
-            <p>Testing · Bug Tracking · Networking · System Admin</p>
+            <p>Testing · Automation · Networking · System Admin</p>
           </div>
         </div>
       </div>
@@ -371,16 +347,15 @@
       <div class="skill-card">
         <h3><span class="icon-dot"></span>Focus</h3>
         <p style="color:var(--muted); font-size:14.5px;">
-          Quality Assurance & Networking — she thinks in test cases and topology diagrams,
-          equally comfortable tracing a bug through a bank's internal systems or configuring
-          a network from the ground up.
+          Quality Assurance & Networking — combining software testing expertise, test automation suites (Selenium/TestNG), 
+          bug management tools (Jira), and solid foundational network administration skills.
         </p>
       </div>
       <div class="skill-card">
         <h3><span class="icon-dot"></span>Currently</h3>
         <p style="color:var(--muted); font-size:14.5px;">
           Pursuing a BSc in Information and Communication Technology at the University of Colombo,
-          Faculty of Technology, sharpening QA methodology and networking fundamentals in parallel.
+          Faculty of Technology, actively building automated systems and expanding professional engineering competencies.
         </p>
       </div>
     </div>
@@ -392,23 +367,21 @@
     <h2 class="section-title">Skills &amp; Expertise</h2>
     <div class="about-grid">
       <div class="skill-card">
-        <h3><span class="icon-dot"></span>Technical Knowledge</h3>
+        <h3><span class="icon-dot"></span>Technical Stack</h3>
         <div class="chip-list">
-          <div class="chip-item"><span class="chip-name">Testing</span><span class="chip-desc">Structured, methodical software testing across real-world scenarios.</span></div>
-          <div class="chip-item"><span class="chip-name">Bug Tracking</span><span class="chip-desc">Logging and following defects through to resolution.</span></div>
-          <div class="chip-item"><span class="chip-name">QA</span><span class="chip-desc">Quality control processes that catch issues before they ship.</span></div>
-          <div class="chip-item"><span class="chip-name">Networking</span><span class="chip-desc">Configuring networks and diagnosing connectivity issues.</span></div>
-          <div class="chip-item"><span class="chip-name">Sys Admin</span><span class="chip-desc">Administering systems and troubleshooting under pressure.</span></div>
+          <div class="chip-item"><span class="chip-name">QA & Testing</span><span class="chip-desc">Selenium, TestNG, Maven, Manual Testing, ExtentReports</span></div>
+          <div class="chip-item"><span class="chip-name">Bug Tracking</span><span class="chip-desc">Jira Software, Test Case Management, Excel</span></div>
+          <div class="chip-item"><span class="chip-name">Development</span><span class="chip-desc">Java, PHP, SQL, HTML5, CSS3, JavaScript, Android Studio</span></div>
+          <div class="chip-item"><span class="chip-name">Tools & Design</span><span class="chip-desc">Git, VS Code, Postman, Figma (UI/UX - M3)</span></div>
         </div>
       </div>
       <div class="skill-card">
-        <h3><span class="icon-dot"></span>Professional Skills</h3>
+        <h3><span class="icon-dot"></span>Professional Core</h3>
         <div class="chip-list">
-          <div class="chip-item"><span class="chip-name">Negotiation</span><span class="chip-desc">Finding workable outcomes across competing priorities.</span></div>
-          <div class="chip-item"><span class="chip-name">Problem-Solving</span><span class="chip-desc">Breaking ambiguous problems into testable pieces.</span></div>
-          <div class="chip-item"><span class="chip-name">Time Mgmt</span><span class="chip-desc">Balancing coursework, internship and extracurriculars.</span></div>
-          <div class="chip-item"><span class="chip-name">Relationships</span><span class="chip-desc">Building trust across departments through clear communication.</span></div>
-          <div class="chip-item"><span class="chip-name">Market Analysis</span><span class="chip-desc">Reading context and requirements before committing.</span></div>
+          <div class="chip-item"><span class="chip-name">Problem-Solving</span><span class="chip-desc">Analyzing requirements and debugging software/networks efficiently.</span></div>
+          <div class="chip-item"><span class="chip-name">Collaboration</span><span class="chip-desc">Cross-functional communication honed through corporate internships.</span></div>
+          <div class="chip-item"><span class="chip-name">Adaptability</span><span class="chip-desc">Quick integration into fast-paced technical and banking workflows.</span></div>
+          <div class="chip-item"><span class="chip-name">Time Mgmt</span><span class="chip-desc">Balancing rigorous engineering coursework and high-impact projects.</span></div>
         </div>
       </div>
     </div>
@@ -424,17 +397,14 @@
         <div class="tl-role">Intern</div>
         <div class="tl-org">Hatton National Bank</div>
         <p>
-          Worked across multiple departments as part of a rotational internship, taking part in group tasks
-          and assisting teams with day-to-day operational needs. Maintained clear, consistent communication
-          across departmental lines and adapted quickly to a fast-moving corporate environment — balancing
-          competing priorities while holding to deadlines and expected standards of professionalism.
+          Actively participated in group tasks, assisting different departments and maintaining clear communication across teams.
+          Adapted quickly to a professional banking environment, efficiently managing time and prioritizing daily responsibilities.
         </p>
         <div class="tagset">
-          <span class="tag">Teamwork</span>
-          <span class="tag">Collaboration</span>
-          <span class="tag">Corporate Etiquette</span>
+          <span class="tag">Teamwork & Collaboration</span>
           <span class="tag">Time Management</span>
-          <span class="tag">Adaptability</span>
+          <span class="tag">Professional Communication</span>
+          <span class="tag">Corporate Etiquette</span>
         </div>
       </div>
     </div>
@@ -443,23 +413,59 @@
   <!-- PROJECTS -->
   <section class="sec reveal" id="projects">
     <div class="eyebrow">Projects</div>
-    <h2 class="section-title">Featured Project</h2>
-    <div class="proj-card">
-      <div class="proj-top">
-        <div class="proj-title">Web Application Manual Testing &amp; Documentation</div>
-        <div class="pass-badge"><span class="dot"></span>Status: Pass</div>
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">OrangeHRM Test Automation Suite</div>
+          <div class="tech-badge">Selenium, Java, TestNG, Maven</div>
+        </div>
+        <div class="proj-body">
+          Developed a comprehensive automated test framework using the Page Object Model (POM) design pattern. Automated valid/invalid login flows and PIM employee management, implementing Explicit & Implicit Waits for robust element synchronization and TestNG for structured execution.
+        </div>
       </div>
-      <div class="proj-fields">
-        <div class="pfield"><div class="pfield-label">Type</div><div class="pfield-value">QA / Manual Testing</div></div>
-        <div class="pfield"><div class="pfield-label">Focus</div><div class="pfield-value">Web Application</div></div>
-        <div class="pfield"><div class="pfield-label">Method</div><div class="pfield-value">Test Case Docs</div></div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">E-Commerce Test Automation Framework</div>
+          <div class="tech-badge">Java, Selenium, TestNG, ExtentReports</div>
+        </div>
+        <div class="proj-body">
+          Built an end-to-end UI automation suite for an e-commerce platform covering authentication, dynamic product filtering, cart management, and checkout flows. Integrated ExtentReports for detailed HTML execution logging and utilized JavaScript Executors to handle dynamic web elements.
+        </div>
       </div>
-      <div class="proj-body">
-        Carried out end-to-end manual testing of a web application, working through defined test cases to verify
-        functionality, usability, and reliability. Every defect found was logged with clear reproduction steps and
-        tracked through to resolution. The project was documented in full — test plans, case logs, and results —
-        producing a traceable record built around careful, repeatable quality assurance practice.
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">Swag Labs Manual Testing & Bug Tracking</div>
+          <div class="tech-badge">Manual Testing, Jira, Excel</div>
+        </div>
+        <div class="proj-body">
+          Executed a complete manual testing cycle on an e-commerce platform. Designed structured test cases in Excel covering core modules (authentication, inventory, checkout) and utilized Jira Software on a Scrum board to log, track, and manage bugs.
+        </div>
       </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">Stay_Smart - Hostel Management System</div>
+          <div class="tech-badge">PHP, SQL, HTML, CSS, JavaScript</div>
+        </div>
+        <div class="proj-body">
+          Developed a web-based hostel management system to streamline accommodation tracking, room allocations, and student record management with an efficient administrative workflow.
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">UpNext - Mobile To-Do Application</div>
+          <div class="tech-badge">Java, Android Studio, Figma</div>
+        </div>
+        <div class="proj-body">
+          Developed a feature-rich mobile To-Do application (March - May 2026) following Material Design 3 (M3) principles to help users organize daily tasks and boost productivity.
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -468,23 +474,62 @@
     <div class="eyebrow">Credentials</div>
     <h2 class="section-title">Education &amp; Certifications</h2>
 
-    <div class="cred-card">
+    <div class="cred-card" style="margin-bottom:24px;">
       <div class="cred-label">Education</div>
       <div class="cred-row">
-        <div class="cred-what"><strong>BSc in Information and Communication Technology</strong><span>University of Colombo, Faculty of Technology</span></div>
+        <div class="cred-what">
+          <strong>Bachelor's in Information and Communication Technology</strong>
+          <span>University of Colombo - Faculty of Technology</span>
+        </div>
         <div class="cred-date">Aug 2024 — Present</div>
       </div>
       <div class="cred-row">
-        <div class="cred-what"><strong>G.C.E. Advanced Level — Technology Stream</strong><span>Mahiyanganaya National School</span></div>
+        <div class="cred-what">
+          <strong>G.C.E. Advanced Level — Technology Stream</strong>
+          <span>Mahiyanganaya National School</span>
+        </div>
         <div class="cred-date">2020 — 2023</div>
       </div>
     </div>
 
     <div class="cred-card">
-      <div class="cred-label">Licenses &amp; Certifications</div>
-      <div class="cred-row"><div class="cred-what"><strong>Front-End Web Development</strong></div><div class="cred-date">University of Moratuwa</div></div>
-      <div class="cred-row"><div class="cred-what"><strong>Python for Beginners</strong></div><div class="cred-date">University of Moratuwa</div></div>
-      <div class="cred-row"><div class="cred-what"><strong>Web Design for Beginners</strong></div><div class="cred-date">University of Moratuwa</div></div>
+      <div class="cred-label">Licenses &amp; Certifications (PDF Verified)</div>
+
+      <div class="cred-row">
+        <div class="cred-what"><strong>AWS Academy Graduate — Cloud Foundations</strong></div>
+        <a class="pdf-link" href="certificates/AWS_Academy_Graduate__Cloud_Foundations.pdf" target="_blank">View PDF</a>
+      </div>
+
+      <div class="cred-row">
+        <div class="cred-what"><strong>Introduction to Software Quality Assurance</strong></div>
+        <a class="pdf-link" href="certificates/Introduction_to_Software_Quality_Assurance_E-Certificate.pdf" target="_blank">View PDF</a>
+      </div>
+
+      <div class="cred-row">
+        <div class="cred-what"><strong>Network Architecture Fundamentals — Cisco</strong></div>
+        <a class="pdf-link" href="certificates/Network_Architecture_Fundamentals.pdf" target="_blank">View PDF</a>
+      </div>
+
+      <div class="cred-row">
+        <div class="cred-what"><strong>Python for Beginners — University of Moratuwa</strong></div>
+        <a class="pdf-link" href="certificates/Python_for_Beginners_E-Certificate.pdf" target="_blank">View PDF</a>
+      </div>
+
+      <div class="cred-row">
+        <div class="cred-what"><strong>Software Testing Fundamentals and Methodologies — Microsoft</strong></div>
+        <a class="pdf-link" href="certificates/Software_Testing_Fundamentals_and_Methodologies.pdf" target="_blank">View PDF</a>
+      </div>
+
+      <div class="cred-row">
+        <div class="cred-what"><strong>Technical Support Fundamentals — Google</strong></div>
+        <a class="pdf-link" href="certificates/Technical_Support_Fundamentals.pdf" target="_blank">View PDF</a>
+      </div>
+
+      <div class="cred-row">
+        <div class="cred-what"><strong>Web Design for Beginners — University of Moratuwa</strong></div>
+        <a class="pdf-link" href="certificates/Web_Design_for_Beginners_E-Certificate.pdf" target="_blank">View PDF</a>
+      </div>
+
     </div>
   </section>
 
@@ -493,8 +538,8 @@
     <div class="eyebrow">Beyond Work</div>
     <h2 class="section-title">Extracurricular Activities</h2>
     <div class="activity-grid">
-      <div class="activity-item"><span class="idx">01</span> Faculty Kabaddi Team</div>
-      <div class="activity-item"><span class="idx">02</span> Arts Club — Music Circle</div>
+      <div class="activity-item"><span class="idx">01</span> Faculty Kabaddi Team — University of Colombo</div>
+      <div class="activity-item"><span class="idx">02</span> Arts Club (Music Circle)</div>
       <div class="activity-item"><span class="idx">03</span> LEO Club</div>
       <div class="activity-item"><span class="idx">04</span> INSEC Society</div>
       <div class="activity-item"><span class="idx">05</span> Sports Club</div>
@@ -505,13 +550,13 @@
   <section class="sec reveal" id="contact">
     <div class="contact-card">
       <h2>Let's Connect</h2>
-      <p>Open to internships, QA and networking roles, and interesting conversations.</p>
+      <p>Open to internships, Quality Assurance roles, networking positions, and technical collaborations.</p>
       <div class="cta-row" style="justify-content:center;">
         <a class="btn btn-primary" href="mailto:heshaninethmini3@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
           Say Hello
         </a>
-        <a class="btn btn-ghost" download="Heshani_CV.pdf" href="cv.pdf">Download CV</a>
+        <a class="btn btn-ghost" download="cv.pdf" href="cv.pdf">Download CV</a>
       </div>
     </div>
   </section>
@@ -546,7 +591,7 @@
   }
 
   // Typing effect for role line
-  const roles = ["QA & Testing Enthusiast", "Network & Systems Undergrad", "Detail-Oriented Problem Solver"];
+  const roles = ["Quality Assurance Intern", "Network Systems Enthusiast", "QA Automation & Testing Undergrad"];
   const typedEl = document.getElementById('typed');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) {
