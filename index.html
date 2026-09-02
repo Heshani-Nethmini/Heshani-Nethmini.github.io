@@ -38,21 +38,21 @@
   ::selection{background:var(--primary); color:#fff;}
   :focus-visible{outline:2px solid var(--accent); outline-offset:4px;}
 
-  .wrap{max-width:1160px; margin:0 auto; padding:0 32px;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 32px; position:relative; z-index:2;}
 
-  /* Ambient Dynamic Background */
-  .bg-canvas{
-    position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+  /* ICT Network Grid & Tech Nodes Background */
+  .bg-grid{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image: 
+      linear-gradient(to right, rgba(139, 92, 246, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(6, 182, 212, 0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
-  .blob{
-    position:absolute; width:550px; height:550px; border-radius:50%; filter:blur(140px); opacity:0.25; animation:floatBlob 12s infinite alternate ease-in-out;
+  .tech-node {
+    position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 1; opacity: 0.35;
   }
-  .blob-1{background:var(--primary); top:-100px; right:-100px;}
-  .blob-2{background:var(--accent); bottom:-100px; left:-100px; animation-delay:6s;}
-  @keyframes floatBlob{
-    0%{transform:translate(0, 0) scale(1);}
-    100%{transform:translate(40px, 50px) scale(1.1);}
-  }
+  .node-1 { width: 250px; height: 250px; background: var(--primary); top: 40px; left: -50px; }
+  .node-2 { width: 300px; height: 300px; background: var(--accent); bottom: 50px; right: -50px; opacity: 0.25; }
 
   /* Navigation Bar */
   header.nav{
@@ -80,7 +80,7 @@
   .nav-cta:hover{transform:translateY(-2px); box-shadow:0 0 30px var(--accent-glow);}
   @media (min-width:901px){ nav.links{display:flex;} }
 
-  section{position:relative; z-index:1; padding:110px 0;}
+  section{position:relative; z-index:2; padding:110px 0;}
   
   .section-tag{
     font-family:var(--font-mono); font-size:13px; letter-spacing:0.15em; text-transform:uppercase;
@@ -141,7 +141,7 @@
   }
   .hero-contacts a:hover{color:var(--accent);}
 
-  /* Profile Card with 3D tilt/flip effect */
+  /* Profile Card */
   .profile-container{perspective:1000px; width:min(340px, 90vw); margin:0 auto;}
   .profile-card{
     position:relative; aspect-ratio:1/1; border-radius:30px; background:var(--bg-card);
@@ -157,7 +157,7 @@
   .profile-overlay h3{font-family:var(--font-heading); font-size:20px; font-weight:700;}
   .profile-overlay p{font-family:var(--font-mono); font-size:12px; color:var(--accent);}
 
-  /* Bento Grid for About & Skills */
+  /* Bento Grid */
   .bento-grid{display:grid; grid-template-columns:1fr; gap:24px;}
   @media (min-width:768px){ .bento-grid{grid-template-columns:repeat(2, 1fr);} }
   @media (min-width:1024px){ .bento-grid{grid-template-columns:repeat(3, 1fr);} }
@@ -178,7 +178,6 @@
   .bento-card h3{font-family:var(--font-heading); font-size:20px; font-weight:700; margin-bottom:12px;}
   .bento-card p{color:var(--muted); font-size:15px; margin-bottom:20px;}
 
-  /* Tags / Chips */
   .skill-chips{display:flex; flex-wrap:wrap; gap:8px;}
   .chip{
     font-family:var(--font-mono); font-size:12px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08);
@@ -186,7 +185,7 @@
   }
   .chip:hover{background:rgba(139,92,246,0.15); border-color:var(--primary); color:#fff;}
 
-  /* Timeline (Experience) */
+  /* Timeline */
   .timeline-modern{position:relative; padding-left:30px; border-left:2px solid rgba(139,92,246,0.2);}
   .tl-node{position:relative; margin-bottom:40px;}
   .tl-node::before{
@@ -218,7 +217,7 @@
   .proj-badge{font-family:var(--font-mono); font-size:11px; background:rgba(6, 182, 212, 0.1); color:var(--accent); padding:4px 10px; border-radius:8px; border:1px solid rgba(6,182,212,0.2);}
   .proj-desc{color:var(--muted); font-size:14.5px; margin-bottom:24px;}
 
-  /* Credentials / Certifications Grid */
+  /* Credentials */
   .certs-grid{display:grid; grid-template-columns:1fr; gap:16px;}
   @media (min-width:768px){ .certs-grid{grid-template-columns:repeat(2, 1fr);} }
   
@@ -231,7 +230,7 @@
   .cert-info span{font-family:var(--font-mono); font-size:12px; color:var(--muted);}
   .cert-btn{
     font-family:var(--font-mono); font-size:12px; background:rgba(139,92,246,0.1); color:var(--primary); border:1px solid rgba(139,92,246,0.3);
-    padding:8px 16px; border-radius:10px; white-space:nowrap; transition:all 0.2s ease; margin-left:auto;
+    padding:8px 16px; border-radius:10px; white-space:nowrap; transition:all 0.2s ease; margin-left:auto; display:inline-block;
   }
   .cert-btn:hover{background:var(--primary); color:#fff; box-shadow:0 0 15px var(--primary-glow);}
 
@@ -252,17 +251,15 @@
   .foot-socials a:hover{color:var(--primary); border-color:var(--primary); transform:translateY(-3px);}
   .foot-copy{font-family:var(--font-mono); font-size:12px; color:var(--muted); opacity:0.7;}
 
-  /* Scroll Reveal animation classes */
   .reveal{opacity:0; transform:translateY(25px); transition:opacity 0.7s ease, transform 0.7s ease;}
   .reveal.in{opacity:1; transform:none;}
 </style>
 </head>
 <body>
 
-<div class="bg-canvas">
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-</div>
+<div class="bg-grid"></div>
+<div class="tech-node node-1"></div>
+<div class="tech-node node-2"></div>
 
 <!-- NAVIGATION -->
 <header class="nav">
@@ -317,7 +314,7 @@
     </div>
   </section>
 
-  <!-- ABOUT & EXPERTISE (BENTO GRID) -->
+  <!-- ABOUT & EXPERTISE -->
   <section class="reveal" id="about">
     <div class="section-tag">About Me</div>
     <h2 class="section-title">Driven by Quality & Precision</h2>
@@ -347,7 +344,7 @@
     </div>
   </section>
 
-  <!-- TECHNICAL SKILLS SECTION -->
+  <!-- TECHNICAL SKILLS -->
   <section class="reveal" id="skills">
     <div class="section-tag">Expertise</div>
     <h2 class="section-title">Technical Stack & Soft Skills</h2>
@@ -424,6 +421,7 @@
     <h2 class="section-title">Featured Projects</h2>
     
     <div class="projects-grid">
+      <!-- Project 1 -->
       <div class="project-card">
         <div>
           <div class="proj-top">
@@ -431,17 +429,21 @@
             <span class="proj-badge">Automation</span>
           </div>
           <p class="proj-desc">
-            Developed a comprehensive automated test framework using the Page Object Model (POM) design pattern[cite: 2]. Automated user logins and PIM management with explicit/implicit synchronization and structured TestNG execution[cite: 2].
+            Developed a comprehensive automated test framework using the Page Object Model (POM) design pattern[cite: 2]. Automated valid/invalid login flows and PIM employee management, implementing Explicit & Implicit Waits for robust element synchronization and TestNG for structured execution[cite: 2].
           </p>
         </div>
-        <div class="skill-chips">
-          <span class="chip">Selenium</span>
-          <span class="chip">Java</span>
-          <span class="chip">TestNG</span>
-          <span class="chip">Maven</span>
+        <div>
+          <div class="skill-chips" style="margin-bottom:20px;">
+            <span class="chip">Selenium</span>
+            <span class="chip">Java</span>
+            <span class="chip">TestNG</span>
+            <span class="chip">Maven</span>
+          </div>
+          <a href="https://github.com/Heshani-2023t01904" target="_blank" class="cert-btn">GitHub Code →</a>
         </div>
       </div>
 
+      <!-- Project 2 -->
       <div class="project-card">
         <div>
           <div class="proj-top">
@@ -449,16 +451,20 @@
             <span class="proj-badge">UI Automation</span>
           </div>
           <p class="proj-desc">
-            Built an end-to-end UI automation suite covering auth, dynamic filtering, and checkouts[cite: 2]. Integrated ExtentReports for advanced HTML log generation and managed dynamic elements using JavaScript Executors[cite: 2].
+            Built an end-to-end UI automation suite for an e-commerce platform covering authentication, dynamic product filtering, cart management, and checkout flows[cite: 2]. Integrated ExtentReports for detailed HTML logging and utilized JavaScript Executors[cite: 2].
           </p>
         </div>
-        <div class="skill-chips">
-          <span class="chip">Java</span>
-          <span class="chip">Selenium</span>
-          <span class="chip">ExtentReports</span>
+        <div>
+          <div class="skill-chips" style="margin-bottom:20px;">
+            <span class="chip">Java</span>
+            <span class="chip">Selenium</span>
+            <span class="chip">ExtentReports</span>
+          </div>
+          <a href="https://github.com/Heshani-2023t01904" target="_blank" class="cert-btn">GitHub Code →</a>
         </div>
       </div>
 
+      <!-- Project 3 -->
       <div class="project-card">
         <div>
           <div class="proj-top">
@@ -466,16 +472,20 @@
             <span class="proj-badge">Manual QA</span>
           </div>
           <p class="proj-desc">
-            Executed an end-to-end manual testing cycle for an e-commerce platform[cite: 2]. Designed structured test cases in Excel and utilized JIRA Software on a Scrum board to log, track, and resolve bugs[cite: 2].
+            Executed a complete manual testing cycle on an e-commerce platform[cite: 2]. Designed structured test cases in Excel covering core modules and utilized Jira Software on a Scrum board to log, track, and manage bugs[cite: 2].
           </p>
         </div>
-        <div class="skill-chips">
-          <span class="chip">Manual Testing</span>
-          <span class="chip">JIRA</span>
-          <span class="chip">Excel Test Cases</span>
+        <div>
+          <div class="skill-chips" style="margin-bottom:20px;">
+            <span class="chip">Manual Testing</span>
+            <span class="chip">JIRA</span>
+            <span class="chip">Excel</span>
+          </div>
+          <a href="https://github.com/Heshani-2023t01904" target="_blank" class="cert-btn">GitHub Code →</a>
         </div>
       </div>
 
+      <!-- Project 4 -->
       <div class="project-card">
         <div>
           <div class="proj-top">
@@ -483,13 +493,16 @@
             <span class="proj-badge">Full Stack</span>
           </div>
           <p class="proj-desc">
-            Developed a web-based hostel management system (January — December 2025) to optimize room allocations, student record tracking, and administrative administrative workflows[cite: 2].
+            Developed a web-based hostel management system (January - December 2025) to streamline accommodation tracking, room allocations, and student record management with an efficient administrative workflow[cite: 2].
           </p>
         </div>
-        <div class="skill-chips">
-          <span class="chip">PHP</span>
-          <span class="chip">SQL</span>
-          <span class="chip">JavaScript</span>
+        <div>
+          <div class="skill-chips" style="margin-bottom:20px;">
+            <span class="chip">PHP</span>
+            <span class="chip">SQL</span>
+            <span class="chip">JavaScript</span>
+          </div>
+          <a href="https://github.com/Heshani-2023t01904" target="_blank" class="cert-btn">GitHub Code →</a>
         </div>
       </div>
     </div>
@@ -583,7 +596,6 @@
 </footer>
 
 <script>
-  // Smooth Reveal Animation on Scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -594,7 +606,6 @@
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Creative Typing Effect for roles
   const roles = ["QA Engineering Enthusiast", "Test Automation Undergrad", "Selenium & JIRA Specialist"];
   const typedEl = document.getElementById('typed');
   let ri = 0, ci = 0, deleting = false;
