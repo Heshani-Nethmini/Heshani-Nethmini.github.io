@@ -72,10 +72,58 @@
   nav.links a{color:var(--muted); transition:color 0.3s ease, transform 0.2s ease;}
   nav.links a:hover{color:var(--text); transform:translateY(-1px);}
   
+  /* Dropdown Styling */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    background: var(--bg-card);
+    min-width: 220px;
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    z-index: 1000;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    animation: fadeIn 0.2s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .dropdown-content a {
+    color: var(--text) !important;
+    padding: 12px 18px;
+    text-decoration: none;
+    display: block;
+    font-size: 13.5px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.2s ease;
+  }
+  .dropdown-content a:last-child {
+    border-bottom: none;
+  }
+  .dropdown-content a:hover {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--primary) !important;
+    padding-left: 22px;
+  }
+  .dropdown.active .dropdown-content {
+    display: block;
+  }
+
   .nav-cta{
     background:linear-gradient(135deg, var(--primary), var(--accent));
     color:#fff !important; padding:10px 22px; border-radius:30px; font-weight:600 !important; font-size:14px;
     box-shadow:0 0 20px var(--primary-glow); transition:transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 8px;
   }
   .nav-cta:hover{transform:translateY(-2px); box-shadow:0 0 30px var(--accent-glow);}
   @media (min-width:901px){ nav.links{display:flex;} }
@@ -272,7 +320,19 @@
       <a href="#credentials">Certificates</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="nav-cta" href="#contact">Let's Connect</a>
+    
+    <!-- Navbar Resume Dropdown -->
+    <div class="dropdown" id="navDropdown">
+      <button class="nav-cta" onclick="toggleDropdown(event)">
+        Resume 
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="dropdown-content">
+        <a href="Quality Assurance CV.pdf" download="Quality Assurance CV.pdf">Quality Assurance CV</a>
+        <a href="Networking CV.pdf" download="Networking CV.pdf">Networking CV</a>
+        <a href="Project Management CV.pdf" download="Project Management CV.pdf">Project Management CV</a>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -289,7 +349,19 @@
         </p>
         <div class="hero-actions">
           <a class="btn btn-glow" href="#projects">View Featured Projects</a>
-          <a class="btn btn-outline" download="cv.pdf" href="cv.pdf">Download Resume CV</a>
+          
+          <!-- Hero Section Resume Dropdown -->
+          <div class="dropdown" style="display:inline-block;" id="heroDropdown">
+            <button class="btn btn-outline" onclick="toggleHeroDropdown(event)" style="border-radius:35px;">
+              Download Resume CV 
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="dropdown-content" style="left: 0; right: auto;">
+              <a href="Quality Assurance CV.pdf" download="Quality Assurance CV.pdf">Quality Assurance CV</a>
+              <a href="Networking CV.pdf" download="Networking CV.pdf">Networking CV</a>
+              <a href="Project Management CV.pdf" download="Project Management CV.pdf">Project Management CV</a>
+            </div>
+          </div>
         </div>
         <div class="hero-contacts">
           <a href="mailto:heshaninethmini3@gmail.com">heshaninethmini3@gmail.com</a>
@@ -641,7 +713,7 @@
 
       <div class="cert-card">
         <div class="cert-info">
-          <h4>Front-End Web Development</h4>
+          <h4>Front-End-Web Development</h4>
           <span>University of Moratuwa</span>
         </div>
         <a class="cert-btn" href="certificates/Web_Design_for_Beginners_E-Certificate.pdf" target="_blank">View PDF</a>
@@ -671,7 +743,6 @@
       <p>Open to Project Management, QA Engineering, and Network Engineering opportunities.</p>
       <div class="hero-actions" style="justify-content:center;">
         <a class="btn btn-glow" href="mailto:heshaninethmini3@gmail.com">Get in Touch via Email</a>
-        <a class="btn btn-outline" download="cv.pdf" href="cv.pdf">Download Resume CV</a>
       </div>
     </div>
   </section>
@@ -731,6 +802,28 @@
     setTimeout(typeEffect, deleting ? 40 : 80);
   }
   typeEffect();
+
+  // Dropdown Toggle Functions & Outside Click Listener
+  function toggleDropdown(event) {
+    event.stopPropagation();
+    const dropdown = document.getElementById('navDropdown');
+    const heroDropdown = document.getElementById('heroDropdown');
+    heroDropdown.classList.remove('active');
+    dropdown.classList.toggle('active');
+  }
+
+  function toggleHeroDropdown(event) {
+    event.stopPropagation();
+    const heroDropdown = document.getElementById('heroDropdown');
+    const dropdown = document.getElementById('navDropdown');
+    dropdown.classList.remove('active');
+    heroDropdown.classList.toggle('active');
+  }
+
+  window.addEventListener('click', () => {
+    document.getElementById('navDropdown').classList.remove('active');
+    document.getElementById('heroDropdown').classList.remove('active');
+  });
 </script>
 
 </body>
